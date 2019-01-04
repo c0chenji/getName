@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block addData %}
+	<div class="container contentCenterize ">
+		<div class ="row">
+			<div class="col-3">
+				<form action="" method="POST">{% csrf_token %}
+					{{form|crispy}}
+					<input class="btn btn-dark" type="SUBMIT" VALUE="Add New Name"></input>
+					
+				</form> 
+
+			</div>
+			<div class="col dataBackground dataStyle">
+				<h1><b>Names:{{new_message}}</b></h1><br>
+				<div class="row">
+						<div class="col">	
+							<label><b>金:</b></label>
+								{% for item in entries %}
+									{% if item.get_attribute_display == "金"%}
+										<div>{{item.full_name}} {{item.get_gender_display}} {{item.get_attribute_display}}</div><br>
+									{% endif %}
+							    {% endfor%}
+						</div>
+						<div class="col">
+							<label><b>木:</b></label>
+								{% for item in entries %}
+									{% if item.get_attribute_display == "木"%}
+										
+										<div>{{item.full_name}} {{item.get_gender_display}} {{item.get_attribute_display}}</div><br>
+									{% endif %}
+							    {% endfor%}
+						</div>
+						<div class="col">
+							<label><b>水:</b></label>
+								{% for item in entries %}
+									{% if item.get_attribute_display == "水"%}
+										
+										<div>{{item.full_name}} {{item.get_gender_display}} {{item.get_attribute_display}}</div><br>
+									{% endif %}
+							    {% endfor%}
+						</div>
+						<div class="col">
+							<label><b>火:</b></label>
+								{% for item in entries %}
+									{% if item.get_attribute_display == "火"%}
+										
+										<div>{{item.full_name}} {{item.get_gender_display}} {{item.get_attribute_display}}</div><br>
+									{% endif %}
+							    {% endfor%}
+						</div>
+						<div class="col">
+							<label><b>土:</b></label>
+								{% for item in entries %}
+									{% if item.get_attribute_display == "土"%}
+										<div>{{item.full_name}} {{item.get_gender_display}} {{item.get_attribute_display}}</div><br>
+									{% endif %}
+							    {% endfor%}
+						</div>
+						
+				</div>		
+				 <button class="btn btn-dark" style="position: fixed;bottom: 150px;" onclick="window.location.href='{% static "../.." %}'"> Landing Page</button>
+			</div>
+		</div>	
+	</div>
+{% endblock %}
