@@ -1,5 +1,5 @@
 # getName
-a application to create Chinese name based on tranditional elements
+It is an application to create Chinese name based on tranditional elements
 
 Before checking this project, make sure python 3.5 is installed.
 
