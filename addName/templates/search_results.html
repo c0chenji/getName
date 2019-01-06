@@ -6,13 +6,12 @@
     <div class="addBorder">
         <p>You searched for: <strong>{{query}}</strong></p>
         {% if results%}
-        {% for item in results %} 
-          <!-- <div class="container"> -->
-             <label>姓名：</label>{{ item.full_name}}&nbsp &nbsp&nbsp   
-             <label>性别：</label>{{ item.gender}}  &nbsp &nbsp&nbsp
-             <label>属性：</label>{{ item.attribute}}&nbsp &nbsp&nbsp<br>
-         <!--  </div>      -->      
-       {% endfor %}
+        
+         
+             <label>Name：</label>{{ results.full_name}}&nbsp &nbsp&nbsp   
+             <label>Gender：</label>{{ results.gender}}  &nbsp &nbsp&nbsp
+             <label>Element：</label>{{ results.attribute}}&nbsp &nbsp&nbsp<br>
+      
        {% else %}
        <p>sorry, the data you are searching is unavailable yet</p>
        {% endif %}

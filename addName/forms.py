@@ -2,11 +2,6 @@ from django import forms
 from .models import SignUp
 from django.db import models
 
-# ADD_GENDER=("Male","Female")
-class ContactForm(forms.Form):
-	full_name = forms.CharField()
-	email=forms.EmailField()
-	message = forms.CharField()
 class SignUpForm(forms.ModelForm):
 	class Meta:
 		"""docstring for Meta"""

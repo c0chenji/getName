@@ -1,13 +1,15 @@
 from django.shortcuts import render
-from .forms import SignUpForm,ContactForm
-from django.core.mail import send_mail
+from .forms import SignUpForm
 from django.conf import settings
 from .models import SignUp
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+import random
+from random import randint
 
 # Create your views here.
+# save data and display it on the page
 def add_display(request):
     title = "已添加的名字："
     message=""
@@ -39,40 +41,20 @@ def add_display(request):
 
     return render(request, "addName.html", context)
 
-# def contact(request):
-#     form = ContactForm(request.POST or None)
 
-#     if form.is_valid():
-#         # print(form.cleaned_data)
-#         form_email = form.cleaned_data.get("email")
-#         form_message = form.cleaned_data.get("message")
-#         form_full_name = form.cleaned_data.get("full_name")
-#         subject = "site contact form"
-#         from_email = settings.EMAIL_HOST_USER
-#         to_email = [from_email ]
-#         contact_message ="%s: %s via %s"%(form_full_name,form_message, form_email)
-#         send_mail(subject,
-#             contact_message,
-#             from_email,
-#             to_email,
-#             fail_silently=False)
-#     context={
-#         "form":form,
-#     }
-#     return render(request, "forms.html",context)
-
-
+# Get the request datas and show random one of them
 def search(request):
   if ('country' in request.GET and request.GET['country']) and ('gender' in request.GET and request.GET['gender']) and('attr' in request.GET and request.GET['attr']):
     a = request.GET['country']
     b  = request.GET['gender']
     c  = request.GET['attr']
     query = a + " , " + b +" 以及 " + c
-    # attri = SignUp.objects.filter(attribute__icontains=q)
-    # results = attri.filter(gender__icontains=l)
     results =SignUp.objects.filter(country__icontains=a, gender__icontains=b,attribute__icontains=c)
+    count = results.count()
+    single_result=results[randint(0,count-1)]
+   
     return render_to_response('search_results.html',
-      {'results': results ,  'query':query})
+      {'results': single_result ,  'query':query})
   else:
     return HttpResponse('Please submit a search term.')
 
